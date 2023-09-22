@@ -333,6 +333,8 @@ def corrcoef(
     name: Optional[str] = None,
     out: Optional[paddle.Tensor] = None,
 ) -> paddle.Tensor:
+    if y is not None:
+        x = paddle.concat((x, y), axis=1 if rowvar else 0)
     return paddle.linalg.corrcoef(
         x=x,
         rowvar=rowvar,
